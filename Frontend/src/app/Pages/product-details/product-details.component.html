@@ -1,0 +1,101 @@
+<!-- <p>product-details works!</p> -->
+<div class="product-page">
+  <div class="product-sec1">
+    <div class="product-left">
+      <div class="product-image">
+        <!-- <div class="mask"></div> -->
+        <img
+          class="sho-image"
+          [src]="'http://localhost:3000/' + details.image"
+          alt="shoes images"
+        />
+      </div>
+    </div>
+    <div class="product-right">
+      <div class="product-desc">
+        <div class="product-price-details">
+          <h3>{{ details.productName }}</h3>
+          <div class="product-review">
+            <h4>${{ details.price }}</h4>
+            <div class="product-rating">
+              <h5 id="r">Review</h5>
+              <h5 id="rate">{{ details.rating }}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="product-size">
+          <div class="size-selector">
+            <span>Size</span>
+            <select id="size" name="size" class="animated-select">
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+          </div>
+        </div>
+        <div class="product-description">
+          <p>
+            {{ details.description }}
+          </p>
+        </div>
+        <div class="product-color">
+          <span>Color :</span>
+          <ul>
+            <li class="color-items" id="red"></li>
+            <li class="color-items" id="green"></li>
+            <li class="color-items" id="blue"></li>
+            <li class="color-items" id="black"></li>
+          </ul>
+        </div>
+        <div class="product-quntity">
+          <h4>QTY</h4>
+          <div class="pluse-minus">hi</div>
+        </div>
+        <div class="add-buy">
+          <button (click)="addToCart()" class="add-to-cart-btn">
+            <span class="icon"><i class="ri-shopping-cart-line"></i></span>
+            Add to Cart
+          </button>
+          <button class="add-to-cart-btn buy-n">
+            <span class="buy-now"><i class="ri-shopping-cart-line"></i></span>
+            Buy now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-sec2">
+    <div class="product-wrap">
+      <div class="product-icon">
+        <div class="secure-payment">
+          <span
+            ><img src="../../../assets/dev-images/akash/sp.jpg" alt=""
+          /></span>
+          <h3>Secure Payment</h3>
+        </div>
+        <div class="Free-Delivery">
+          <span
+            ><img src="../../../assets/dev-images/akash/fdd.jpg" alt=""
+          /></span>
+          <h3>Free Delivery</h3>
+        </div>
+        <div class="seven-day">
+          <span
+            ><img src="../../../assets/dev-images/akash/re.jpg" alt=""
+          /></span>
+          <h3>7 Day Replacemnt</h3>
+        </div>
+      </div>
+    </div>
+    <div class="sim-hed">
+      <span class="sh" data-text="Good"
+        ><span class="P-good">Good </span><span class="F-Y">for You</span></span
+      >
+    </div>
+    <div class="product-similer">
+      <app-product-cards [cardItems]="cards" />
+    </div>
+  </div>
+</div>

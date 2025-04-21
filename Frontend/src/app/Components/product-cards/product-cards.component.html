@@ -1,0 +1,21 @@
+<div class="cards_container">
+  <!-- Cards -->
+  <div class="cards" *ngFor="let item of cardItems">
+    <div>
+      <img
+        [src]="'http://localhost:3000/' + item.image"
+        onerror="src='../../../assets/dev-images/card-1.png'"
+        alt="shoes images"
+      />
+    </div>
+    <div class="card_mid">
+      <div class="card_name_price">
+        <p>{{ item.productName }}</p>
+        <span>{{ item.price }}$</span>
+      </div>
+      <small>{{ item.description }}</small>
+      <small>{{ item.rating }}</small>
+      <button (click)="navigateToDetails(item._id)">Buy Now</button>
+    </div>
+  </div>
+</div>

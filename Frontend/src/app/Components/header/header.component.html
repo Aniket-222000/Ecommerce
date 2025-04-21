@@ -1,0 +1,108 @@
+<nav>
+  <div>Logo</div>
+
+  <ul id="mobile-nav-view" class="mobile_view">
+    <button (click)="toggleMobileNav()" id="mobile-nav-close-btn">
+      <i class="ri-close-large-line"></i>
+    </button>
+    <li><a routerLink="/">Home</a></li>
+    <li>Man</li>
+    <li>Women</li>
+    <li>Kids</li>
+    <li><a routerLink="about-us">About US</a></li>
+    <li *ngIf="access"><a routerLink="home/admin">Admin</a></li>
+  </ul>
+
+  <ul class="icon_items">
+    <li title="Cart">
+      <!-- (click)="cartOpenClose()" [routerLink]="!islogin ? 'auth' : 'check-out'" -->
+      <i (click)="cartOpenClose()" class="ri-shopping-cart-line"></i>
+    </li>
+    <li title="Search">
+      <i class="ri-search-line" (click)="toggleSearch()"></i>
+    </li>
+    <li id="profile" title="My Profile">
+      <!-- routerLink="profile" -->
+      <a (click)="loginUser()"><i class="ri-user-line"></i></a>
+      <div class="drop_down">
+        <ul>
+          <!-- <li *ngIf="islogin"><a routerLink="profile">Settings</a></li> -->
+          <li><a routerLink="check-out">Check Out</a></li>
+          <li *ngIf="islogin">
+            <a routerLink="order-history">Order History</a>
+          </li>
+          <li *ngIf="islogin" (click)="logOut()">Log Out</li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <button (click)="toggleMobileNav()" class="hamburger">
+        <i class="ri-menu-line"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
+
+<div id="search-container" class="search">
+  <button (click)="toggleSearch()" id="search-close-btn">
+    <i class="ri-close-large-line"></i>
+  </button>
+  <div class="search_field">
+    <label for="search"><i class="ri-search-line"></i></label>
+    <input
+      type="text"
+      [(ngModel)]="searchInput"
+      (keypress)="searchItems($event)"
+      id="search"
+      name="search"
+      placeholder="Search here..."
+    />
+    <i (click)="clearCards()" class="ri-close-line"></i>
+  </div>
+  <div *ngIf="cards.length > 0; else elseBlock" class="search-results">
+    <app-product-cards [cardItems]="cards" />
+  </div>
+  <ng-template #elseBlock>
+    <div class="empty-card">
+      <h1>No Product</h1>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Side Panel -->
+<div id="mySidepanel" class="sidepanel headergap active">
+  <span href="#" class="closebtn" (click)="cartOpenClose()" id="cart-close"
+    >×</span
+  >
+  <!-- <p>This is the side panel content.</p> -->
+  <span *ngIf="myCartArrayOfObjects.length > 0; else elseBlock">
+    <h4 *ngIf="!islogin">Log in to order</h4>
+    <div *ngFor="let elem of myCartArrayOfObjects" class="cart-item">
+      <h3>{{ elem.name }}</h3>
+      <div class="cart-side-panel">
+        <img [src]="'http://localhost:3000/' + elem.img" loading="lazy" alt="Product Image" />
+        <div class="sidepanel-quantity-price">
+          <p class="price">${{ elem.price }}</p>
+          <div class="quantity">
+            <button (click)="minusbtn(elem.id)" class="minus-btn panel-btn">
+              -
+            </button>
+            <input
+              class="panel-btn"
+              type="number"
+              [value]="elem.quantity"
+              min="1"
+            />
+            <button (click)="plusbtn(elem.id)" class="plus-btn panel-btn">
+              +
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+  <ng-template class="cart-item" #elseBlock
+    ><h3>No item in Cart</h3></ng-template
+  >
+  <!--  -->
+</div>
