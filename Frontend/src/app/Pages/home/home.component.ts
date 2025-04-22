@@ -57,6 +57,7 @@ export class HomeComponent {
     {
       primary: '../../../assets/dev-images/landscape1.jpg',
       secondary: '../../../assets/dev-images/portrait1.jpg',
+      tertiary:'../../../assets/dev-images/back.jpg'
     },
     {
       primary: '../../../assets/dev-images/landscape2.jpg',

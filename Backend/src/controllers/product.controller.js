@@ -186,12 +186,12 @@ import { ApiResponse } from "../utils/apiResponse.js";
 import fs from "fs";
 
 const addProduct = asyncHandler(async (req, res) => {
-  const { productName, price, description, rating, category, otherImages } = req.body;
+  const { productName, price, description, rating, category } = req.body;
   if ([productName,description,category].some(f=>!f||f.trim()==="")||!req.file)
     throw new ApiError(400, "All fields are required");
 
   const image = req.file.filename;
-  const prod = await Product.create({ productName, price, description, rating, image, category, otherImages });
+  const prod = await Product.create({ productName, price, description, rating, image, category });
   res.status(201).json(new ApiResponse(200, prod, "Product added successfully"));
 });
 

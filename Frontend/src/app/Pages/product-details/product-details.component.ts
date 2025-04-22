@@ -1,19 +1,25 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { ProductCardsComponent } from '../../Components/product-cards/product-cards.component';
 import { GlobalItemsService } from '../../Services/global-items.service';
+import { OrderplacedComponent } from "../../orderplaced/orderplaced.component";
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [ProductCardsComponent],
+  imports: [ProductCardsComponent, OrderplacedComponent,CommonModule,FormsModule],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent {
+quantity: any;
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private globalService: GlobalItemsService
   ) {}
 
@@ -21,7 +27,10 @@ export class ProductDetailsComponent {
   details: any = {};
   cards: any = [];
   myCartArrayOfObjects: any[] = [];
-
+  isPlaced:boolean=false;
+  placed() {
+   this.router.navigate(['/orderplaced']);
+    }
   async ngOnInit() {
     this.itemId = this.route.snapshot.params['id'];
     if (this.itemId != null) {
@@ -63,7 +72,7 @@ export class ProductDetailsComponent {
       img: this.details.image,
       oldprice: this.details.price,
       price: this.details.price,
-      quantity: 1,
+      quantity: this.quantity,
     };
 
     // Check for duplicates based on item id
@@ -74,15 +83,17 @@ export class ProductDetailsComponent {
     if (!isDuplicate) {
       // If item is not a duplicate, add it to the cart
       this.myCartArrayOfObjects.push(mycartobj);
-
+      alert("Item added to the cart ")
       // Update localStorage
       localStorage.setItem(
         'myCartData',
         JSON.stringify(this.myCartArrayOfObjects)
       );
+      
     } else {
       // Handle duplicate item case if needed
       console.log('Item is already in the cart');
+      alert("Item is already in the cart");
     }
   }
 }

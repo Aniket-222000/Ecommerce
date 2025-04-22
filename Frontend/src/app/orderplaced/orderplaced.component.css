@@ -1,0 +1,48 @@
+.order-wrapper {
+    max-width: 400px;
+    margin: 100px auto;
+    top: 50%;
+    bottom: 50%;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    z-index: 9999;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: fadeIn 0.4s ease;
+  }
+  
+  .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #38a169;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    color: #4a5568;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .back-btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    background-color: #38a169;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: #2f855a;
+  }
+  

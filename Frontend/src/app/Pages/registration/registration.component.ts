@@ -3,15 +3,19 @@ import { FormsModule } from '@angular/forms';
 import axios from 'axios';
 import { Router } from '@angular/router';
 import { GlobalItemsService } from '../../Services/global-items.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css',
 })
 export class RegistrationComponent {
+admin: boolean=false;
+admincode: string='';
+
   username: string = '';
   email: string = '';
   password: string = '';
@@ -20,6 +24,10 @@ export class RegistrationComponent {
     private router: Router,
     private globalService: GlobalItemsService
   ) {}
+  setAdmin() {
+    this.admin = !this.admin;
+    this.signUp();
+  }
   ngOnInit() {
     let userToken = localStorage.getItem('userToken');
     if (userToken != null && userToken != undefined) {
@@ -42,11 +50,20 @@ export class RegistrationComponent {
   }
 
   signUp() {
+    if(this.admin!=false){
+      this.admincode="admin";
+    }
+    else{
+      this.admincode="normal";
+    
+    }
+    console.log(this.admincode);
     axios
       .post('http://localhost:3000/api/v1/users/register', {
         username: this.username,
         email: this.email,
         password: this.password,
+        usertype:this.admincode
       })
       .then((response) => {
         localStorage.setItem('userToken', response.data.data._id);

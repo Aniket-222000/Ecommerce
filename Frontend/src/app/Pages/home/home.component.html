@@ -4,14 +4,14 @@
     <!-- Slides -->
     <div class="swiper-slide" *ngFor="let images of devImages; index as i">
       <picture>
-        <source media="(min-width:650px)" [srcset]="images.primary" />
-        <img [src]="images.secondary" alt="Flowers" />
+        <source media="(min-width:650px)" [srcset]="images.tertiary" />
+        <img [src]="images.tertiary" alt="Flowers" />
       </picture>
     </div>
     <div class="swiper-slide" *ngFor="let images of devImages; index as i">
       <picture>
-        <source media="(min-width:650px)" [srcset]="images.primary" />
-        <img [src]="images.secondary" alt="Flowers" />
+        <source media="(min-width:650px)" [srcset]="images.tertiary" />
+        <img [src]="images.tertiary" alt="Flowers" />
       </picture>
     </div>
   </div>

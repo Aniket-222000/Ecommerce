@@ -22,7 +22,7 @@ import mongoose from "mongoose";
 const connectDB = async () => {
   try {
     const connectionInstance = await mongoose.connect(
-      process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/ShoesWebsite"
+      process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/ecommerce"
     );
     console.log(`MongoDB connected: ${connectionInstance.connection.host}`);
   } catch (error) {

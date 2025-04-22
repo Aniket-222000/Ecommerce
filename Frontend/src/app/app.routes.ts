@@ -7,6 +7,8 @@ import { OrderHistoryComponent } from './Pages/order-history/order-history.compo
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { ProductDetailsComponent } from './Pages/product-details/product-details.component';
 import { RegistrationComponent } from './Pages/registration/registration.component';
+import { OrderplacedComponent } from './orderplaced/orderplaced.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
 
 export const routes: Routes = [
   {
@@ -49,4 +51,14 @@ export const routes: Routes = [
     component: RegistrationComponent,
     title: 'Registration',
   },
+  {
+    path:'orderplaced',
+    component:  OrderplacedComponent,
+    title:'Order Placed'
+  },
+  {
+    path:'addproduct',
+    component:AddproductComponent,
+    title:'Add Product'
+  }
 ];

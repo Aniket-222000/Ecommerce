@@ -22,7 +22,8 @@ import {
   loginUser,
   updateAccountDetails,
   getUserById,
-  getUserByIdWithPass
+  getUserByIdWithPass,
+  registerAdmin
 } from "../controllers/user.controller.js";
 
 const router = Router();
@@ -31,5 +32,6 @@ router.post("/login",    loginUser);
 router.patch("/update",  updateAccountDetails);
 router.get("/getuserbyid",      getUserById);
 router.get("/getuserbyidwithpass", getUserByIdWithPass);
+router.post("/register/admin",registerAdmin)
 
 export default router;

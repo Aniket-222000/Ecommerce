@@ -51,17 +51,21 @@
         </div>
         <div class="product-quntity">
           <h4>QTY</h4>
-          <div class="pluse-minus">hi</div>
+          <div class="pluse-minus"><input type="text"[(ngModel)]="quantity"/></div>
         </div>
         <div class="add-buy">
           <button (click)="addToCart()" class="add-to-cart-btn">
             <span class="icon"><i class="ri-shopping-cart-line"></i></span>
             Add to Cart
           </button>
-          <button class="add-to-cart-btn buy-n">
+          <button class="add-to-cart-btn buy-n" (click)="placed()">
             <span class="buy-now"><i class="ri-shopping-cart-line"></i></span>
             Buy now
           </button>
+          <div style="top: 50%; bottom: 50%; z-index: 9999;margin-left: 10  px;"
+          >
+      
+          </div>
         </div>
       </div>
     </div>

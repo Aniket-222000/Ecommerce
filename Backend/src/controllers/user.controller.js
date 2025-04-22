@@ -151,10 +151,19 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/apiError.js";
 import { User } from "../models/user.model.js";
 import { ApiResponse } from "../utils/apiResponse.js";
+import { Admin } from "../models/admin.js";
+const registerAdmin=async(req,res)=>{
+    const {name,email,password,role}=req.body
+    if(!name||!email||!password||!role)throw new ApiError(400,"All fields are required")
+    const admin=await Admin.create({name,email,password,role})
+    const createdAdmin=await Admin.findById(admin._id).select("-password")
+    res.status(201).json(new ApiResponse(200,createdAdmin,"Admin registered successfully"))
+}
 
-const registerUser = asyncHandler(async (req, res) => {
-  const { email, username, password } = req.body;
-  if ([email,username,password].some(f=>!f||f.trim()===""))
+const registerUser =async (req, res) => {
+  const { email, username, password ,usertype} = req.body;
+  console.log(usertype);
+  if ([email,username,,usertype].some(f=>!f||f.trim()===""))
     throw new ApiError(400, "All fields are required");
 
   if (await User.findOne({ email }))
@@ -163,12 +172,13 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     email,
     password,
-    username: username.toLowerCase()
+    username: username.toLowerCase(),
+    usertype:usertype
   });
 
   const created = await User.findById(user._id).select("-password");
   res.status(201).json(new ApiResponse(200, created, "User registered successfully"));
-});
+};
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -212,5 +222,6 @@ export {
   loginUser,
   updateAccountDetails,
   getUserById,
-  getUserByIdWithPass
+  getUserByIdWithPass,
+  registerAdmin
 };

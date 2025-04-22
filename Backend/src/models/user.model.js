@@ -59,7 +59,7 @@ const userSchema = new Schema({
   state:       String,
   city:        String,
   pincode:     Number,
-  usertype:    { type: String, enum: ["normal","admin"], default: "normal" }
+  usertype:    { type: String, enum: ["normal","admin"] }
 }, { timestamps: true });
 
 export const User = mongoose.model("User", userSchema);

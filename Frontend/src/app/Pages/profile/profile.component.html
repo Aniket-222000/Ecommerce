@@ -16,6 +16,7 @@
           >
             {{ !edit ? "Edit" : "Cancel" }}
           </button>
+          <button *ngIf="admin==true" class="btn btn-sm btn-primary" (click)="addproduct()">Add product</button>
           <button
             (click)="updateProfile()"
             class="btn btn-sm btn-primary"

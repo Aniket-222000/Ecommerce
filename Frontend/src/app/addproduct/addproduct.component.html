@@ -1,0 +1,11 @@
+<h1 style="text-align: center;color: blueviolet;">ADD PRODUCT</h1>
+<form (ngSubmit)="submitForm()" #productForm="ngForm">
+    <input type="text" name="productName" [(ngModel)]="form.productName" placeholder="Enter product name" required="true" />
+    <input type="text" name="price" [(ngModel)]="form.price" placeholder="Enter price"/>
+    <input type="text" name="description" [(ngModel)]="form.description" placeholder="Enter Description" required />
+    <input type="text" name="rating" [(ngModel)]="form.rating" placeholder="Enter rating"/>
+    <input type="text" name="category" [(ngModel)]="form.category" placeholder="Enter category" required />
+    <input type="file" (change)="onFileChange($event)" placeholder="Choose image"/>
+    <button type="submit">Submit</button>
+  </form>
+  

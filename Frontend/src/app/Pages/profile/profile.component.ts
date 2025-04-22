@@ -1,18 +1,20 @@
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import axios from 'axios';
 import { Router } from '@angular/router';
 import { GlobalItemsService } from '../../Services/global-items.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [NgIf, FormsModule],
+  imports: [NgIf, FormsModule,CommonModule,HttpClientModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent {
+
   edit: boolean = false;
   phoneNumber: Number = 0;
   emailaddress: string = '';
@@ -25,6 +27,8 @@ export class ProfileComponent {
   country: string = '';
   pincode: number = 0;
   userToken: any = '';
+  usertype: string = '';
+  admin: boolean=false;
   constructor(
     private router: Router,
     private globalService: GlobalItemsService
@@ -48,6 +52,14 @@ export class ProfileComponent {
               ? data.phonenumber
               : this.phoneNumber;
             this.emailaddress = data.email;
+            this.usertype = data.usertype;
+            if(this.usertype=="admin" ){
+              this.admin=true;
+            }
+            else{
+              this.admin=false;
+            
+            }
             this.name = data.username;
             this.passwordtext = data.password;
             this.address = data.address ? data.address : this.address;
@@ -61,7 +73,9 @@ export class ProfileComponent {
       this.router.navigate(['/']);
     }
   }
-
+  addproduct() {
+    this.router.navigate(['/addproduct']);
+  }
   togglePassVisibility() {
     if (this.passVisibility == 'password') {
       this.passVisibility = 'text';
