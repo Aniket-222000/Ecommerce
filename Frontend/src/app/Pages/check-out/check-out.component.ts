@@ -125,4 +125,9 @@ export class CheckOutComponent {
   }
 
   handleContinue() {}
+  //   const userId = localStorage.getItem('userToken');
+  //   if (!userId) {
+  //     console.error('User not logged in');
+  //     return;
+  //   }
 }

@@ -71,15 +71,9 @@ admincode: string='';
         this.router.navigate(['/']);
       })
       .catch((error) => {
-        if (error.response.status == 400) {
-          alert('All fields are required');
-        } else if (error.response.status == 409) {
-          alert('User with email already exists');
-        } else if (error.response.status == 500) {
-          alert('Something went wrong while registering the user');
-        } else {
+        
           alert('something went wrong');
-        }
+        
       });
   }
 

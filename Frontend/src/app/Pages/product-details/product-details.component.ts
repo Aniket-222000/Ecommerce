@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ProductCardsComponent } from '../../Components/product-cards/product-cards.component';
 import { GlobalItemsService } from '../../Services/global-items.service';
 import { OrderplacedComponent } from "../../orderplaced/orderplaced.component";
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,31 +16,53 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProductDetailsComponent {
 quantity: any;
+  details1: any=[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private globalService: GlobalItemsService
+    private globalService: GlobalItemsService,
+    private viewportScroller: ViewportScroller
   ) {}
+ 
 
+ 
   itemId: string = '';
   details: any = {};
   cards: any = [];
   myCartArrayOfObjects: any[] = [];
   isPlaced:boolean=false;
   items:any=[];
+  userId:any;
   async ngOnInit() {
+    this.viewportScroller.scrollToPosition([0, 0]);
     this.itemId = this.route.snapshot.params['id'];
-    if (this.itemId != null) {
-      console.log(this.itemId);
+    let userToken = localStorage.getItem('userToken');
+    if (userToken != null && userToken != undefined) {
       axios
-        .get('http://localhost:3000/api/v1/products/getproductbyid', {
+        .get('http://localhost:3000/api/v1/users/getuserbyid', {
           params: {
-            _id: this.itemId,
+            _id: userToken,
           },
         })
+        .then((res) => {
+          if (res.data.data) {
+          
+            this.userId=res.data.data._id;
+          }
+        });
+    }
+  
+
+  
+      console.log('Item ID:', this.itemId);
+      await axios
+        .get('http://localhost:3000/api/v1/products/getproductbyid', {
+          params: {_id: this.itemId
+          }
+        })
         .then((response) => {
-          console.log(response.data.data);
+          console.log(response.data.data,"in product details");
           // handle success
           this.details = response.data.data;
         })
@@ -48,7 +70,7 @@ quantity: any;
           // handle error
           console.log(error);
         });
-    }
+    
     if (this.details) {
       axios
         .get('http://localhost:3000/api/v1/products/getallproducts')
@@ -57,12 +79,17 @@ quantity: any;
         });
     }
   }
-  placed() {
-    axios
-    .post('http://localhost:3000/api/v1/orders/addorderhistory',{userId:this.itemId,items:})
+  async placed() {
+    console.log(this.details._id,"product from details variable")
+   await axios
+    .post('http://localhost:3000/api/v1/orders/addorderhistory',{userId:this.userId,
+      items:[{productId:this.details._id,quantity:this.quantity}],
+      totalPrice:this.details.price
+    })
     .then((response) => {
       // handle success
-      this.details = response.data.data;
+      console.log("successfully saved in to database ")
+      
     })
     .catch((error) => {
       // handle error

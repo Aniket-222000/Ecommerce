@@ -196,6 +196,7 @@ const addProduct = asyncHandler(async (req, res) => {
 });
 
 const getProductById = asyncHandler(async (req, res) => {
+  console.log(req.query,"req.query")
   const { _id } = req.query;
   if (!_id) throw new ApiError(400, "Product ID is required");
   const prod = await Product.findById(_id);
