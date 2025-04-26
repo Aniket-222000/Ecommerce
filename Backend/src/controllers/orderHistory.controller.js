@@ -59,10 +59,11 @@ const getUserOrders = asyncHandler(async (req, res) => {
 });
 
 const addOrderHistory = asyncHandler(async (req, res) => {
-  const { userId, items, totalPrice } = req.body;
-  if (!userId||!items||!totalPrice)
-    throw new ApiError(400, "All fields are required");
-
+  const { userId ,items,totalPrice} = req.body;
+  // if (!userId||!items||!totalPrice)
+  //   throw new ApiError(400, "All fields are required");
+  console.log(userId)
+  
   const newOrder = await OrderHistory.create({ user: userId, items, totalPrice });
   res.status(201).json(new ApiResponse(200, newOrder, "Order history added successfully"));
 });

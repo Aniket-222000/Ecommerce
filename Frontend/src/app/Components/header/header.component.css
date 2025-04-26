@@ -3,83 +3,101 @@ nav {
   justify-content: space-between;
   align-items: center;
   position: sticky;
+  top: 0;
   height: 10dvh;
   padding: 0 2dvw;
-  z-index: 2;
-  background: rgb(199 199 199 / 25%);
-  box-shadow: -1px 6px 12px 0px rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  gap: 3dvw;
+  gap: 2.5dvw;
+  margin: 0;
+  padding: 0;
 }
 
 nav .icon_items {
-  gap: 1.5dvw;
-  font-size: larger;
+  display: flex;
+  gap: 1.2dvw;
+  font-size: 1.25rem;
 }
 
 nav li {
   cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+nav li:hover {
+  color: #007bff;
 }
 
 nav a {
   text-decoration: none;
-  color: unset;
+  color: inherit;
 }
 
 .search {
   display: none;
   position: fixed;
-  z-index: 2;
+  z-index: 15;
   top: 0;
-  padding: 5vh 10vw;
+  left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: #525252;
-  font-size: x-large;
+  padding: 5vh 10vw;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
 }
 
 .search input {
-  font-size: large;
-  width: calc(100% - 3rem);
-  outline: none;
+  font-size: 1.25rem;
+  width: 100%;
   border: none;
+  outline: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  color: #000;
 }
 
 .search_field {
   display: flex;
-  gap: 0.5vw;
+  gap: 1vw;
   align-items: center;
   background-color: #ffffff;
   border-radius: 2rem;
+  padding: 0.5rem 1rem;
 }
 
 .ri-close-line,
 .ri-search-line {
-  padding: 2vh;
+  padding: 0.75rem;
+  font-size: 1.25rem;
   border-radius: 50%;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 :is(.ri-close-line, .ri-search-line, #search-close-btn):hover {
-  background-color: #808080;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #search-close-btn {
   height: 3rem;
   width: 3rem;
-  font-size: large;
-  border-radius: 50%;
-  outline: none;
+  font-size: 1.25rem;
   border: none;
-  margin: 1rem 1rem 1rem calc(100% - 1rem);
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  margin: 1rem auto 0 auto;
   cursor: pointer;
 }
 
@@ -89,11 +107,13 @@ nav a {
 
 .hamburger {
   display: none;
-  font-size: large;
-  height: 2rem;
-  width: 2rem;
+  font-size: 1.5rem;
+  height: 2.5rem;
+  width: 2.5rem;
   border: none;
-  border-radius: 1rem;
+  background: none;
+  color: #333;
+  border-radius: 0.5rem;
   cursor: pointer;
 }
 
@@ -109,16 +129,28 @@ nav a {
   display: none;
   position: absolute;
   right: 0;
-  font-size: medium;
+  font-size: 1rem;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 5;
 }
 
 .drop_down ul {
   display: flex;
   flex-direction: column;
-  gap: unset;
-  padding: 0.5rem 1rem;
-  background: aliceblue;
-  /* padding: unset; */
+  padding: 0.5rem 0;
+}
+
+.drop_down ul li {
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.drop_down ul li:hover {
+  background-color: #f1f1f1;
 }
 
 #profile:hover .drop_down {
@@ -126,27 +158,26 @@ nav a {
 }
 
 .search-results {
-  margin: 2vh 0 0 0;
+  margin-top: 2vh;
   height: 70dvh;
   width: 100%;
-  /* background-color: aqua; */
   display: flex;
-  overflow: scroll;
-  overflow-x: hidden;
-  gap: 3vw;
-  align-items: center;
-  padding: 1dvh;
-  cursor: pointer;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
+  gap: 2vw;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
 .empty-card {
-  height: 80%;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #888;
+  font-size: 1.25rem;
 }
 
 @media (max-width: 767px) {
@@ -160,29 +191,27 @@ nav a {
 
   nav .mobile_nav_active {
     display: flex;
-    z-index: 2;
-    background-color: aqua;
-    height: 100dvh;
-    width: 40dvw;
-    min-width: 200px;
     flex-direction: column;
+    gap: 2rem;
     position: fixed;
     top: 0;
     right: 0;
-    padding: 4vh 0 0 4dvw;
-    gap: 4dvh;
-    font-size: x-large;
+    width: 70vw;
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 4rem 2rem;
+    z-index: 20;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.25rem;
+    transition: transform 0.3s ease-in-out;
   }
 
   #mobile-nav-close-btn {
     display: block;
+    align-self: flex-end;
+    font-size: 1.5rem;
     border: none;
-    height: 3rem;
-    width: 3rem;
-    align-self: end;
-    margin: 0 2dvw 0 0;
-    font-size: large;
-    border-radius: 3rem;
+    background: none;
     cursor: pointer;
   }
 }

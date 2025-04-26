@@ -1,5 +1,16 @@
+:root {
+  --footer-bg-color: #6b4683;
+  --social-icon-bg: #e2d3ee;
+  --social-icon-hover-bg: #3b204b;
+  --social-icon-hover-color: #ac81cb;
+  --footer-nav-color: white;
+  --footer-bottom-bg: #57396a;
+  --footer-text-color: white;
+  --designer-opacity: 0.7;
+}
+
 footer {
-  background-color: #6b4683;
+  background-color: var(--footer-bg-color);
 }
 
 .footerContainer {
@@ -10,31 +21,32 @@ footer {
 .socialIcons {
   display: flex;
   justify-content: center;
+  gap: 10px;
 }
 
 .socialIcons a {
   text-decoration: none;
   padding: 10px;
-  background-color: #e2d3ee;
-  margin: 10px;
+  background-color: var(--social-icon-bg);
   border-radius: 50%;
+  transition: background-color 0.5s, transform 0.3s;
 }
 
 .socialIcons a i {
-  font-size: 2em;
+  font-size: 2rem;
   color: black;
-  opacity: 0, 9;
+  opacity: 0.9;
+  transition: color 0.5s;
 }
 
-/* Hover affect on social media icon */
+/* Hover effect on social media icon */
 .socialIcons a:hover {
-  background-color: #3b204b;
-  transition: 0.5s;
+  background-color: var(--social-icon-hover-bg);
+  transform: scale(1.1);
 }
 
 .socialIcons a:hover i {
-  color: #ac81cb;
-  transition: 0.5s;
+  color: var(--social-icon-hover-color);
 }
 
 .footerNav {
@@ -44,49 +56,49 @@ footer {
 .footerNav ul {
   display: flex;
   justify-content: center;
-  list-style-type: none;
+  list-style: none;
+  gap: 20px;
 }
 
 .footerNav ul li a {
-  color: white;
-  margin: 20px;
+  color: var(--footer-nav-color);
   text-decoration: none;
-  font-size: 1.3em;
+  font-size: 1.3rem;
   opacity: 0.7;
-  transition: 0.5s;
+  transition: opacity 0.5s, transform 0.3s;
 }
 
 .footerNav ul li a:hover {
   opacity: 1;
+  transform: translateY(-3px);
 }
 
 .footerBottom {
-  background-color: #57396a;
+  background-color: var(--footer-bottom-bg);
   padding: 20px;
   text-align: center;
 }
 
 .footerBottom p {
-  color: white;
+  color: var(--footer-text-color);
 }
 
 .designer {
-  opacity: 0.7;
+  opacity: var(--designer-opacity);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
-  margin: 0px 5px;
+  margin: 0 5px;
 }
 
 @media (max-width: 700px) {
   .footerNav ul {
     flex-direction: column;
+    gap: 10px;
   }
 
   .footerNav ul li {
-    width: 100%;
     text-align: center;
-    margin: 10px;
   }
 
   .socialIcons a {

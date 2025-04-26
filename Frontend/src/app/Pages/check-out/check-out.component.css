@@ -1,157 +1,31 @@
-.Delivery_Page_Container,
-.Delivery_left .Delivery_profile,
-.del_p_img {
-  display: -webkit-box;
-  display: -ms-flexbox;
+:root {
+  --primary-color: #9370dd;
+  --secondary-color: #f9f9f9;
+  --accent-color: orange;
+  --text-color: #333;
+  --border-radius: 1rem;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.del_logout_btn > button,
-.delivery_page_ad button {
-  padding: 0.5rem 1rem;
-  background-color: #9370dd;
-  cursor: pointer;
-}
-
+/* Layout */
 .Delivery_Page_Container {
   display: flex;
-  padding: 1vh 7vw;
-  gap: 1.5vw;
-}
-
-.del_shadows {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-  border-radius: 1rem;
+  padding: 2vh 5vw;
+  gap: 2vw;
+  flex-wrap: wrap;
+  background-color: #fff;
 }
 
 .Delivery_left {
-  width: 59%;
+  width: 60%;
 }
 
 .Delivery_right {
-  width: 39%;
-}
-
-.Delivery_left .Delivery_profile {
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  padding: 0 5%;
-  margin-bottom: 5%;
-}
-
-.del_logout_btn,
-.del_mid_dialog,
-.del_p_img {
-  margin: 1rem 0;
-}
-
-.del_p_img {
-  display: flex;
-  gap: 5%;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.del-cart-side-panel,
-.del_ad_heading {
-  display: -webkit-box;
-  display: -ms-flexbox;
-}
-
-.del_ad_heading > i,
-.del_p_img > i {
-  font-size: 150%;
-}
-
-.del_logout_btn > button {
-  border-radius: 1rem;
-  font-size: 80%;
-}
-
-.delivery_page_ad {
-  padding: 5%;
-  margin-bottom: 5%;
-}
-
-.delivery_page_ad iframe {
-  width: 100%;
-  height: 40vh;
-}
-
-.del_ad_heading {
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 2%;
-  margin-bottom: 5%;
-}
-
-.del_address_text,
-.del_number {
-  border: 1px solid;
-  padding: 0.5rem;
-}
-
-.del_address_text,
-.del_number,
-.delivery_page_ad iframe {
-  margin-bottom: 2%;
-  border-radius: 1rem;
-}
-
-.delivery_page_ad button {
-  border-radius: 2rem;
-  font-size: large;
-  text-transform: uppercase;
-}
-
-.del_dialog {
-  padding: 5%;
-  width: 100%;
-  margin-bottom: 5%;
-}
-
-.del_items,
-.final_amt {
-  padding: 5%;
-}
-
-.bill {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 70% 5px auto;
-  grid-template-columns: 70% auto;
-  padding: 10px;
-  gap: 10px 5px;
-  margin-bottom: 5%;
-}
-
-.del_items hr {
-  border: 1px solid #000;
-}
-
-.del-panel-btn,
-.txt_end {
-  text-align: end;
+  width: 38%;
 }
 
 @media (max-width: 900px) {
   .Delivery_Page_Container {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-    -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
   }
 
@@ -161,46 +35,169 @@
   }
 }
 
+/* Profile */
+.Delivery_profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 5%;
+  margin-bottom: 2rem;
+}
+
+/* Buttons */
+.del_logout_btn > button,
+.delivery_page_ad button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.del_logout_btn > button:hover,
+.delivery_page_ad button:hover {
+  background-color: #7a5acd;
+  transform: translateY(-2px);
+}
+
+.delivery_page_ad button {
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-radius: 2rem;
+}
+
+/* Preview Image */
+.del_p_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.del_p_img > i {
+  font-size: 1.5rem;
+}
+
+/* Shadows */
+.del_shadows {
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  background-color: var(--secondary-color);
+  padding: 1rem;
+}
+
+/* Iframe + Address */
+.delivery_page_ad {
+  padding: 5%;
+  margin-bottom: 2rem;
+}
+
+.delivery_page_ad iframe {
+  width: 100%;
+  height: 40vh;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+}
+
+.del_address_text,
+.del_number {
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: white;
+}
+
+/* Headings and Dialogs */
+.del_ad_heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.del_dialog,
+.del_items,
+.final_amt {
+  padding: 5%;
+  margin-bottom: 2rem;
+}
+
+.del_items hr {
+  border: 1px solid #ddd;
+  margin: 1rem 0;
+}
+
+/* Billing Layout */
+.bill {
+  display: grid;
+  grid-template-columns: 70% auto;
+  gap: 10px;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+}
+
+/* Panels */
+.del-panel-btn,
+.txt_end {
+  text-align: right;
+}
+
 .del-cart-side-panel {
   display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
 .del-cart-side-panel > img {
   width: 25%;
+  border-radius: 0.5rem;
+  object-fit: cover;
 }
 
 .del-sidepanel-quantity-price {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
+  justify-content: center;
   flex-grow: 1;
-  gap: 10px;
+  gap: 0.5rem;
 }
 
+/* Quantity Box */
 .del-quantity {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 2.5rem 2.5rem 2.5rem;
-  grid-template-columns: 2.5rem 2.5rem 2.5rem;
+  grid-template-columns: repeat(3, 2.5rem);
   height: 4vh;
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
 }
 
+/* Misc */
 .del2panel-btn {
-  background-color: orange;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.del2panel-btn:hover {
+  background-color: #e69500;
 }
 
 .width20vw {

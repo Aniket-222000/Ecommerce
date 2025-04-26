@@ -28,9 +28,7 @@ quantity: any;
   cards: any = [];
   myCartArrayOfObjects: any[] = [];
   isPlaced:boolean=false;
-  placed() {
-   this.router.navigate(['/orderplaced']);
-    }
+  items:any=[];
   async ngOnInit() {
     this.itemId = this.route.snapshot.params['id'];
     if (this.itemId != null) {
@@ -42,6 +40,7 @@ quantity: any;
           },
         })
         .then((response) => {
+          console.log(response.data.data);
           // handle success
           this.details = response.data.data;
         })
@@ -58,7 +57,20 @@ quantity: any;
         });
     }
   }
-
+  placed() {
+    axios
+    .post('http://localhost:3000/api/v1/orders/addorderhistory',{userId:this.itemId,items:})
+    .then((response) => {
+      // handle success
+      this.details = response.data.data;
+    })
+    .catch((error) => {
+      // handle error
+      console.log("api called")
+      console.log(error);
+    });
+   this.router.navigate(['/orderplaced']);
+    }
   addToCart() {
     console.log('clicked');
 
