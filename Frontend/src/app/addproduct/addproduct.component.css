@@ -1,43 +1,125 @@
+/* Dark, glassy form container with hover-lift & radial highlight */
 form {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  input[type="text"],
-  input[type="file"] {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 18px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: border-color 0.3s ease;
-  }
-  
-  input[type="text"]:focus,
-  input[type="file"]:focus {
-    border-color: #007bff;
-    outline: none;
-  }
-  
-  button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
+  position: relative;
+  overflow: hidden;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 2rem;
+  background: rgba(26, 26, 46, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(167, 139, 250, 0.2),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(109, 40, 217, 0.4);
+}
+
+form:hover::before {
+  opacity: 1;
+}
+
+/* Gradient‐clipped labels for extra punch */
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #a78bfa, #6d28d9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Inputs with inset glass effect + glow on focus */
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  background: rgba(19, 19, 32, 0.7);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #e0e0e0;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+input::placeholder {
+  color: rgba(196, 181, 253, 0.5);
+}
+
+input:focus {
+  border-color: #a78bfa;
+  background: rgba(19, 19, 32, 0.9);
+  box-shadow:
+    0 0 8px rgba(167, 139, 250, 0.6),
+    inset 0 0 12px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+/* Submit button with gradient, shimmer & lift */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(45deg, #6d28d9, #7928ca);
+  color: #d1c4ff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 70%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: left 0.5s ease;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(109, 40, 217, 0.5);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
