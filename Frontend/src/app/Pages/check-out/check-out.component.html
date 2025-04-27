@@ -51,7 +51,7 @@
           <div class="del-cart-side-panel">
             <img [src]="'http://localhost:3000/'+elem.img" alt="Product Image" />
             <div class="del-sidepanel-quantity-price">
-              <p class="del-price">${{ elem.price }}</p>
+              <p class="del-price">{{ elem.price }}</p>
               <div class="del-quantity">
                 <button
                   (click)="minusbtn(elem.id)"
@@ -84,18 +84,18 @@
         <div>Items price</div>
         <div class="txt_end">${{ total_price }}</div>
         <div>Packaging Fee</div>
-        <div class="txt_end">+$00.00</div>
+        <div class="txt_end">+00.00</div>
         <div>GST(5%)</div>
-        <div class="txt_end">+$00.00</div>
+        <div class="txt_end">+00.00</div>
         <div>CGST(2.5)</div>
-        <div class="txt_end">$00.00</div>
+        <div class="txt_end">00.00</div>
         <div>SGST(2.5)</div>
-        <div class="txt_end">$00.10</div>
+        <div class="txt_end">00.10</div>
       </div>
       <hr />
       <div class="bill final_amt">
         <h2>Payable</h2>
-        <h2 class="txt_end">${{ total_price ? total_price : 0 }}</h2>
+        <h2 class="txt_end">{{ total_price ? total_price : 0 }}</h2>
       </div>
     </div>
   </div>
